@@ -1,0 +1,26 @@
+import { defineField, defineType } from 'sanity'
+export default defineType({
+  name: 'provider', title: 'Provider office', type: 'document',
+  fields: [
+    defineField({ name: 'name', type: 'string', validation: (r) => r.required() }),
+    defineField({ name: 'slug', type: 'slug', options: { source: 'name' }, description: 'URL: /office/<slug>', validation: (r) => r.required() }),
+    defineField({ name: 'tier', type: 'string', options: { list: ['Platinum', 'Gold', 'Silver', 'Bronze', 'Licensed', 'New'], layout: 'radio', direction: 'horizontal' }, validation: (r) => r.required() }),
+    defineField({ name: 'active', type: 'boolean', initialValue: true, description: 'Off = hidden from the finder, form and sitemap.' }),
+    defineField({ name: 'doctors', type: 'array', of: [{ type: 'string' }], description: 'e.g. Dr. Randy Roberts' }),
+    defineField({ name: 'street', type: 'string' }),
+    defineField({ name: 'city', type: 'string', validation: (r) => r.required() }),
+    defineField({ name: 'state', type: 'string', description: 'Two-letter code (UT, TX, BC…)', validation: (r) => r.required().length(2) }),
+    defineField({ name: 'zip', type: 'string' }),
+    defineField({ name: 'phoneDisplay', title: 'Phone (display)', type: 'string' }),
+    defineField({ name: 'phoneE164', title: 'Phone (+1XXXXXXXXXX)', type: 'string' }),
+    defineField({ name: 'website', type: 'url' }),
+    defineField({ name: 'lat', title: 'Latitude', type: 'number', description: 'Used to sort by distance and place the map dot.' }),
+    defineField({ name: 'lng', title: 'Longitude', type: 'number' }),
+    defineField({ name: 'intro', type: 'text', rows: 3 }),
+    defineField({ name: 'photo', type: 'image', options: { hotspot: true } }),
+    defineField({ name: 'wixSlug', title: 'Old Wix URL segment', type: 'string', description: 'Redirects /office/<old> here. Read-only reference.', readOnly: true }),
+    defineField({ name: 'order', type: 'number' }),
+    defineField({ name: 'seo', type: 'seo' }),
+  ],
+  preview: { select: { title: 'name', subtitle: 'tier', city: 'city', state: 'state' }, prepare: ({ title, subtitle, city, state }) => ({ title, subtitle: `${subtitle} · ${city}, ${state}` }) },
+})

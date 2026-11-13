@@ -1,0 +1,42 @@
+{
+  "name": "3on6-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "seed": "tsx scripts/seed-sanity.ts",
+    "migrate:wix": "node scripts/migrate-wix.mjs",
+    "import:wix": "sanity dataset import content/wix-export/wix-import.ndjson production --replace",
+    "import:seed": "sanity dataset import content/seed.ndjson production --replace",
+    "pull:wix-images": "node scripts/pull-wix-images.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/nunito-sans": "^5.3.0",
+    "@fontsource/barlow-condensed": "^5.3.0",
+    "@portabletext/react": "^3.2.0",
+    "@sanity/client": "^6.29.1",
+    "@sanity/image-url": "^1.1.0",
+    "@sanity/vision": "^3.70.0",
+    "d3-geo": "^3.1.2",
+    "next": "15.1.12",
+    "next-sanity": "^9.8.0",
+    "react": "19.0.9",
+    "react-dom": "19.0.9",
+    "sanity": "^3.70.0",
+    "styled-components": "^6.1.13"
+  },
+  "devDependencies": {
+    "@types/d3-geo": "^3.1.1",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "cheerio": "^1.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
